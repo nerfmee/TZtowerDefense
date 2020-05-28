@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\rkoby\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\rkoby\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_TzTowerDefense.2133218528.00" t="ExcludeRecursive" />
-    <e p="D:\Рабочий стол\TacticG\TzTowerDefense" t="IncludeRecursive">
+    <e p="C:\Users\rkoby\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_TzTowerDefense.842709325.00" t="ExcludeRecursive" />
+    <e p="D:\Рабочий стол\TzTowerDefense" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
@@ -11,6 +11,7 @@
           <e p="Bullet.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
+          <e p="EnemyMovement.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameOver.cs" t="Include" />
           <e p="GoldUi.cs" t="Include" />
@@ -21,6 +22,7 @@
           <e p="Shop.cs" t="Include" />
           <e p="Turret.cs" t="Include" />
           <e p="TurretBlueprint.cs" t="Include" />
+          <e p="Wave.cs" t="Include" />
           <e p="WaveSpawner.cs" t="Include" />
           <e p="Waypoints.cs" t="Include" />
         </e>

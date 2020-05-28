@@ -3,65 +3,60 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [HideInInspector]
-    public float speed = 10f;
-    public float StartHealth = 100f;
-    private float _health;
-    public int goldValue = 50;
-    private Transform target;
-    private int wavepointIndex = 0;
 
-    [Header("Опционально")] public Image heathBar;
+    public float startSpeed = 10f;
+    public int damage =1;
+  
+    [HideInInspector] public float speed;
+
+    public float startHealth = 100;
+    private float health;
+
+    public int worth = 50;
+
+    public GameObject deathEffect;
+
+    [Header("Unity Stuff")] public Image healthBar;
+
+    private bool isDead = false;
+
+    void Start()
+    {
     
-    private void Start()
-    {
-        target = Waypoints.points[0];
-        _health = StartHealth;
+        speed = startSpeed;
+        health = startHealth;
     }
 
-    public void Update()
+    public void TakeDamage(float amount)
     {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        health -= amount;
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
-        {
-            GetNextWaypoint();
-        }
-    }
+        healthBar.fillAmount = health / startHealth;
 
-    public void TakeDamage(int amount)
-    {
-        _health -= amount;
-        heathBar.fillAmount = _health / StartHealth;
-        if (_health <= 0)
+        if (health <= 0 && !isDead)
         {
-            PlayerStats.Money += goldValue;
             Die();
         }
     }
 
-    private void Die()
+    /*Если нужно будет замедлять врага 
+    public void Slow(float pct)  
     {
-        Destroy(gameObject);
-    }
+        speed = startSpeed * (1f - pct);
+    }*/
 
-    private void GetNextWaypoint()
+    void Die()
     {
-        if (wavepointIndex >= Waypoints.points.Length - 1)
-        {
-            EndPath();
-            return;
-        }
+        isDead = true;
 
-        wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
-    }
+        PlayerStats.Money += worth;
+        PlayerStats.KillStat++;
 
-    private void EndPath()
-    {
-        PlayerStats.Lives--;
-      
+        GameObject effect = (GameObject) Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 5f);
+
+        WaveSpawner.EnemiesAlive--;
+
         Destroy(gameObject);
     }
 }
