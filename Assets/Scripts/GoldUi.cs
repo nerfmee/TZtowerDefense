@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GoldUi : MonoBehaviour
 {
 
-    public Text moneyText;
+    public Text MoneyText;
     void Update()
     {
-        moneyText.text ="Money: " + PlayerStats.Money.ToString();
+        MoneyText.text ="Money: " + PlayerStats.Money.ToString();
     }
 }

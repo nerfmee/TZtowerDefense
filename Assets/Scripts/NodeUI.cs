@@ -1,54 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class NodeUI : MonoBehaviour
 {
+   public GameObject UI;
+   public Button UpgradeButton;
+   public Text UpgradeCost;
+   public Text SellAmount;
 
-   public GameObject ui;
-   
-   private Node target;
-   public Button upgradeButton;
-   
-   public Text upgradeCost;
-   public Text sellAmount;
-   
-   public void SetTarget(Node _target)
+   private Node _target;
+
+ 
+   public void SetTarget(Node target)
    {
-      target = _target;
+      _target = target;
 
-      transform.position = target.GetBuildPosition();
+      transform.position = _target.GetBuildPosition();
 
-      if (!target.isUpgraded)
+      if (!_target.isUpgraded)
       {
-         upgradeCost.text =  target.turretBlueprint.upgradeCost.ToString();
-         upgradeButton.interactable = true;
+         UpgradeCost.text =  _target.turretBlueprint.upgradeCost.ToString();
+         UpgradeButton.interactable = true;
       }
 
-      sellAmount.text = target.turretBlueprint.GetSellAmount().ToString();
+      SellAmount.text = _target.turretBlueprint.GetSellAmount().ToString();
 
-      ui.SetActive(true);
+      UI.SetActive(true);
    }
 
    public void Hide()
    {
-      ui.SetActive(false);
+      UI.SetActive(false);
    }
 
    public void Upgrade()
    {
-      if (target.UpgradeTurret())
+      if (_target.UpgradeTurret())
       {
-         upgradeCost.text = "DONE";
-         upgradeButton.interactable = false;
+         UpgradeCost.text = "DONE";
+         UpgradeButton.interactable = false;
       }
       BuildManager.instance.DeselectTurret();
    }
 
    public void Sell()
    {
-      target.SellTurret();
+      _target.SellTurret();
       Hide();
       BuildManager.instance.DeselectTurret();
    }

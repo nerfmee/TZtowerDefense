@@ -4,35 +4,30 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
 
-    public float startSpeed = 10f;
-    public int damage =1;
+    public float StartSpeed = 10f;
+    public int EnemyDamage = 1;
   
     [HideInInspector] public float speed;
-
-    public float startHealth = 100;
+    
+    [Header("Unity Stuff")] public Image HealthBar;
+    public float StartHealth = 100;
     private float health;
 
-    public int worth = 50;
-
-    public GameObject deathEffect;
-
-    [Header("Unity Stuff")] public Image healthBar;
-
+    public int Worth = 50;
+    public GameObject DeathEffect;  // Я поставил сюда эффект от попадания, но для каждого врага можно свой эффект назначить
     private bool isDead = false;
 
     void Start()
     {
-    
-        speed = startSpeed;
-        health = startHealth;
+        speed = StartSpeed;
+        health = StartHealth;
     }
 
     public void TakeDamage(float amount)
     {
         health -= amount;
-
-        healthBar.fillAmount = health / startHealth;
-
+        HealthBar.fillAmount = health / StartHealth;
+        
         if (health <= 0 && !isDead)
         {
             Die();
@@ -48,15 +43,13 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         isDead = true;
-
-        PlayerStats.Money += worth;
+        PlayerStats.Money += Worth;
         PlayerStats.KillStat++;
 
-        GameObject effect = (GameObject) Instantiate(deathEffect, transform.position, Quaternion.identity);
+        GameObject effect = (GameObject) Instantiate(DeathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
 
         WaveSpawner.EnemiesAlive--;
-
         Destroy(gameObject);
     }
 }

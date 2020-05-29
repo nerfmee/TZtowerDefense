@@ -5,14 +5,13 @@ public class GameManager : MonoBehaviour
 {
     public static bool IsGameOver;
 
-    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private Text _killStatText;
 
     private void Start()
     {
         IsGameOver = false;
     }
-
     private void Update()
     {
         if (IsGameOver)
@@ -26,7 +25,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         IsGameOver = true;
-        gameOverUI.SetActive(true);
+        _gameOverUI.SetActive(true);
         _killStatText.text = ("You kill: " + PlayerStats.KillStat + " enemies");
         Debug.Log("Game Over!");
     }

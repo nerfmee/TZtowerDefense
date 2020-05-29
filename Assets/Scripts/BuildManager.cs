@@ -16,16 +16,16 @@ public class BuildManager : MonoBehaviour
  
 
 
-    public GameObject standardTurretPrefab;
-    public GameObject missileLauncherPrefab;
+    public GameObject StandardTurretPrefab;
+    public GameObject FastTurretPrefab;
 
-    private TurretBlueprint turretToBuild;
-    private Node selectedNode;
+    private TurretBlueprint _turretToBuild;
+    private Node _selectedNode;
 
-    public NodeUI nodeUI;
+   [SerializeField] private NodeUI _nodeUI;
     
-    public bool CanBuild { get { return turretToBuild != null;} }
-    public bool HasMoney{ get { return PlayerStats.Money >= turretToBuild.cost;} }
+    public bool CanBuild { get { return _turretToBuild != null;} }
+    public bool HasMoney{ get { return PlayerStats.Money >= _turretToBuild.cost;} }
 
     public GameObject DeselectTurret()
     {
@@ -35,33 +35,33 @@ public class BuildManager : MonoBehaviour
 
     public void SelectNode(Node node)
     {
-        if (selectedNode == node)
+        if (_selectedNode == node)
         {
             DeselectNode();
             return;
         }
         
-        selectedNode = node;
-        turretToBuild = null;
+        _selectedNode = node;
+        _turretToBuild = null;
         
-        nodeUI.SetTarget(node);
+        _nodeUI.SetTarget(node);
     }
 
     private void DeselectNode()
     {
-        selectedNode = null;
-        nodeUI.Hide();
+        _selectedNode = null;
+        _nodeUI.Hide();
     }
 
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
-        turretToBuild = turret;
+        _turretToBuild = turret;
         DeselectNode();
     }
 
     public TurretBlueprint GetTurretToBuild()
     {
-        return turretToBuild;
+        return _turretToBuild;
     }
     
 }

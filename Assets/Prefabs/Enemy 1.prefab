@@ -108,14 +108,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89035d4ad8abd4c4e91555ea1b9a5096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 2
-  damage: 2
+  StartSpeed: 5
+  EnemyDamage: 2
   speed: 10
-  startHealth: 300
-  worth: 50
-  deathEffect: {fileID: 6064916077207285201, guid: e93f7fa11ee90da458581455a8f743d6,
+  HealthBar: {fileID: 9041390979641412001}
+  StartHealth: 400
+  Worth: 75
+  DeathEffect: {fileID: 6064916077207285201, guid: e93f7fa11ee90da458581455a8f743d6,
     type: 3}
-  healthBar: {fileID: 9041390979641412001}
 --- !u!114 &-5419956702263203929
 MonoBehaviour:
   m_ObjectHideFlags: 0

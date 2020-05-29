@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
@@ -15,12 +13,12 @@ public class Shop : MonoBehaviour
     }
     public void SelectStandardTurret()
     {
-        Debug.Log("Standard Turret Selected");
+        Debug.Log("Обычная турель выбрана");
         buildManager.SelectTurretToBuild(standardTurret);
     }
     public void SelectFustTurret()
     {
-        Debug.Log("Standard Turret Selected");
+        Debug.Log("Быстрая турель выбрана");
         buildManager.SelectTurretToBuild(fastTurret);
     }
 

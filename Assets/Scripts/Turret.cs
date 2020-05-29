@@ -11,21 +11,16 @@ public class Turret : MonoBehaviour
     public float fireRate = 1f;
     private float fireCountdown = 0f;
     [Header("Unity Setup Fields")]
-
-    public string enemyTag = "Enemy";
-
-    public Transform partToRotate;
-
-    public float turnSpeed = 10f;
-
-    public GameObject bulletPrefab;
-    public Transform firePoint;
+    public string EnemyTag = "Enemy";
+    public Transform PartToRotate;
+    public float TurnSpeed = 10f;
+    public GameObject BulletPrefab;
+    public Transform FirePoint;
 
 
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        
     }
 
     void Update()
@@ -36,8 +31,8 @@ public class Turret : MonoBehaviour
 
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation,lookRotation,Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation,lookRotation,Time.deltaTime * TurnSpeed).eulerAngles;
+        PartToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
         if (fireCountdown <= 0f)
         {
@@ -49,7 +44,7 @@ public class Turret : MonoBehaviour
     
     void Shoot()
     {
-       GameObject bulletGO = (GameObject) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+       GameObject bulletGO = (GameObject) Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
@@ -58,7 +53,7 @@ public class Turret : MonoBehaviour
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 

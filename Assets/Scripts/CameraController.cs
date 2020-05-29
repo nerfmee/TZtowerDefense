@@ -12,8 +12,7 @@ public class CameraController : MonoBehaviour
     public float maxX = 20f;
     public float minZ = -50f;
     public float maxZ = 50f;
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (GameManager.IsGameOver)

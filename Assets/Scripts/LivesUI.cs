@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class LivesUI : MonoBehaviour
 {
-    public Text livesText;
+    public Text LivesText;
      void Update()
      {
-         livesText.text = PlayerStats.Lives.ToString() + " LIVES";
+         LivesText.text = PlayerStats.Lives.ToString() + " LIVES";
      }
 }

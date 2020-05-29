@@ -3,28 +3,28 @@ using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
-    public Color hoverColor;
-    public Vector3 positionOffset;
+    public Color HoverColor;
+    public Vector3 PositionOffset;
 
     [HideInInspector] public GameObject turret;
     [HideInInspector] public TurretBlueprint turretBlueprint;
     [HideInInspector] public bool isUpgraded = false;
-    BuildManager buildManager;
-    private Renderer rend;
-    private Color startColor;
-    public Color notEnoughMoneyColor;
+    private BuildManager _buildManager;
+    private Renderer _renderer;
+    private Color _startColor;
+    public Color NotEnoughMoneyColor;
 
     private void Start()
     {
-        rend = GetComponent<Renderer>();
-        startColor = rend.material.color;
+        _renderer = GetComponent<Renderer>();
+        _startColor = _renderer.material.color;
 
-        buildManager = BuildManager.instance;
+        _buildManager = BuildManager.instance;
     }
 
     public Vector3 GetBuildPosition()
     {
-        return transform.position + positionOffset;
+        return transform.position + PositionOffset;
     }
     
     private void BuildTurret(TurretBlueprint blueprint)
@@ -40,8 +40,6 @@ public class Node : MonoBehaviour
         turret = _turret;
 
         turretBlueprint = blueprint;
-        
-      
         Debug.Log("Турель построена! Денег осталось: " + PlayerStats.Money);
     }
 
@@ -60,7 +58,6 @@ public class Node : MonoBehaviour
         //Убираем старую турель
         Destroy(turret);
         //Строим новую 
-        
         GameObject _turret = (GameObject) Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
         turret = _turret;
 
@@ -80,40 +77,33 @@ public class Node : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-
-
+        
         if (turret != null)
         {
-            buildManager.SelectNode(this);
+            _buildManager.SelectNode(this);
             return;
         }
 
-        if (!buildManager.CanBuild)
+        if (!_buildManager.CanBuild)
             return;
 
-        BuildTurret(buildManager.GetTurretToBuild());
+        BuildTurret(_buildManager.GetTurretToBuild());
     }
 
     private void OnMouseEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-
-        if (!buildManager.CanBuild)
+        if (!_buildManager.CanBuild)
             return;
-        if (buildManager.HasMoney)
-        {
-            rend.material.color = hoverColor;
-        }
+        if (_buildManager.HasMoney)
+            _renderer.material.color = HoverColor;
         else
-        {
-            rend.material.color = notEnoughMoneyColor;
-
-        }
+            _renderer.material.color = NotEnoughMoneyColor;
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
-        rend.material.color = startColor;
+        _renderer.material.color = _startColor;
     }
 }

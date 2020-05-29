@@ -54,6 +54,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -67,6 +68,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -133,6 +135,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -145,6 +148,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -198,7 +202,7 @@ GameObject:
   - component: {fileID: 3710364483816916439}
   - component: {fileID: 3710364483816916438}
   m_Layer: 0
-  m_Name: AnoutherTurret
+  m_Name: FastTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,13 +237,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  fireRate: 15
-  enemyTag: Enemy
-  partToRotate: {fileID: 3710364483034589341}
-  turnSpeed: 100
-  bulletPrefab: {fileID: 6091076717290660510, guid: 0ff62e657a71b2c4b88f3672c45016be,
+  fireRate: 20
+  EnemyTag: Enemy
+  PartToRotate: {fileID: 3710364483034589341}
+  TurnSpeed: 25
+  BulletPrefab: {fileID: 6091076717290660510, guid: 0ff62e657a71b2c4b88f3672c45016be,
     type: 3}
-  firePoint: {fileID: 3710364483584588156}
+  FirePoint: {fileID: 3710364483584588156}
 --- !u!1 &3710364483966592994
 GameObject:
   m_ObjectHideFlags: 0
